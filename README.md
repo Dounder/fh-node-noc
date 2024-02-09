@@ -27,6 +27,20 @@ MAILER_SECRET_KEY=
 STATE=dev
 ```
 
+run the command:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+run database:
+
+```bash
+docker-compose up -d
+```
+
 Run the command:
 
 ```bash

@@ -1,5 +1,5 @@
 import { EmailService } from '../../../presentation/email/email.service';
-import { LogEntity, LogLevel } from '../../entities/log.entity';
+import { LogEntity, LogSeverityLevel } from '../../entities/log.entity';
 import { LogRepository } from '../../repositories/log.repository';
 
 interface SendEmailLogsUseCase {
@@ -15,13 +15,13 @@ export class SendEmailLogs implements SendEmailLogsUseCase {
 
 			if (!sent) throw new Error('Error sending email with logs');
 
-			const log = new LogEntity({ level: LogLevel.low, message: `Email sent to ${to}`, origin: 'send-email-logs.use-case' });
+			const log = new LogEntity({ level: LogSeverityLevel.low, message: `Email sent to ${to}`, origin: 'send-email-logs.use-case' });
 
 			this.logRepository.saveLog(log);
 
 			return true;
 		} catch (error) {
-			const log = new LogEntity({ level: LogLevel.high, message: `${error}`, origin: 'send-email-logs.use-case' });
+			const log = new LogEntity({ level: LogSeverityLevel.high, message: `${error}`, origin: 'send-email-logs.use-case' });
 
 			this.logRepository.saveLog(log);
 

@@ -1,5 +1,5 @@
 import { LogDatasource } from '../../domain/datasources/log.datasource';
-import { LogEntity, LogLevel } from '../../domain/entities/log.entity';
+import { LogEntity, LogSeverityLevel } from '../../domain/entities/log.entity';
 import { LogRepository } from '../../domain/repositories/log.repository';
 
 export class LogRepositoryImpl implements LogRepository {
@@ -9,7 +9,7 @@ export class LogRepositoryImpl implements LogRepository {
 		return this.logDatasource.saveLog(log);
 	}
 
-	async getLogs(logLevel: LogLevel): Promise<LogEntity[]> {
+	async getLogs(logLevel: LogSeverityLevel): Promise<LogEntity[]> {
 		return this.logDatasource.getLogs(logLevel);
 	}
 }
